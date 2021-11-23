@@ -1,6 +1,8 @@
 package com.concurrent;
 
-import org.omg.SendingContext.RunTime;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 /**
  * 咕泡学院，只为更好的你
@@ -9,7 +11,7 @@ import org.omg.SendingContext.RunTime;
  **/
 public class DaemonThreadExample {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
        Runtime.getRuntime().addShutdownHook(new Thread(()-> System.out.println("JVM进程已结束")));
        Thread thread=new Thread(()->{
            while(true){
@@ -24,6 +26,7 @@ public class DaemonThreadExample {
        thread.setDaemon(true);
        thread.start();
        Thread.sleep(100);
-       System.out.println("主线程执行完毕...");
+
+        System.out.println("主线程执行完毕...");
     }
 }
